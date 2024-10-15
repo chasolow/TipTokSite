@@ -17,12 +17,13 @@
         .logo-container {
             width: 100%; /* Ширина контейнера для логотипа */
             text-align: center; /* Центрируем изображение */
+            overflow: hidden; /* Скрыть переполнение */
         }
         .logo-container img {
             width: 100%; /* Ширина изображения по ширине контейнера */
             height: auto; 
             max-height: 200px; /* Максимальная высота изображения */
-            object-fit: contain; /* Сохраняем пропорции изображения */
+            object-fit: cover; /* Сохраняем пропорции изображения */
         }
         nav {
             background-color: #282828; 
@@ -80,7 +81,6 @@
     <div class="logo-container">
         <img src="https://i.postimg.cc/vZmHCG8k/big.png" alt="Логотип" onerror="this.onerror=null; this.src='https://via.placeholder.com/150';">
     </div>
-    
 
     <!-- Навигация -->
     <nav>
@@ -108,64 +108,62 @@
         </div>
     </section>
 
-<!-- Вкладка "Калькулятор" -->
-<section id="calculator" class="tab-content">
-    <div class="card">
-        <h2>Расчет стоимости услуг</h2>
-        <form>
-            <label for="existingPower">Есть ли на объекте существующая мощность согласно техническим условиям?</label>
-            <select id="existingPower" name="existingPower">
-                <option value="yes">⚡️ Да</option>
-                <option value="no">❌ Нет</option>
-            </select>
-            <br><br>
+    <!-- Вкладка "Калькулятор" -->
+    <section id="calculator" class="tab-content">
+        <div class="card">
+            <h2>Расчет стоимости услуг</h2>
+            <form>
+                <label for="existingPower">Есть ли на объекте существующая мощность согласно техническим условиям?</label>
+                <select id="existingPower" name="existingPower">
+                    <option value="yes">⚡️ Да</option>
+                    <option value="no">❌ Нет</option>
+                </select>
+                <br><br>
 
-            <label for="power">Суммарная мощность объекта (P, кВт):</label>
-            <input type="number" id="power" name="power" min="0" max="500000" value="50">
-            <br><br>
+                <label for="power">Суммарная мощность объекта (P, кВт):</label>
+                <input type="number" id="power" name="power" min="0" max="500000" value="50">
+                <br><br>
 
-            <label for="additionalPower">Дополнительная мощность (Pдоп, кВт):</label>
-            <input type="number" id="Pdop" name="additionalPower" min="0" max="500000" value="35">
-            <br><br>
+                <label for="additionalPower">Дополнительная мощность (Pдоп, кВт):</label>
+                <input type="number" id="Pdop" name="additionalPower" min="0" max="500000" value="35">
+                <br><br>
 
-            <label for="voltageClass">Класс напряжения:</label>
-            <select id="voltageClass" name="voltageClass">
-                <option value="1">До 1000 В</option>
-                <option value="1.1">3 - 35 кВ</option>
-                <option value="1.2">110 кВ</option>
-                <option value="1.3">220 кВ</option>
-            </select>
-            <br><br>
+                <label for="voltageClass">Класс напряжения:</label>
+                <select id="voltageClass" name="voltageClass">
+                    <option value="1">До 1000 В</option>
+                    <option value="1.1">3 - 35 кВ</option>
+                    <option value="1.2">110 кВ</option>
+                    <option value="1.3">220 кВ</option>
+                </select>
+                <br><br>
 
-            <label for="reactiveCompensation">Компенсация реактивной мощности:</label>
-            <select id="reactiveCompensation" name="reactiveCompensation">
-                <option value="1.1">Есть</option>
-                <option value="1">Нет</option>
-            </select>
-            <br><br>
+                <label for="reactiveCompensation">Компенсация реактивной мощности:</label>
+                <select id="reactiveCompensation" name="reactiveCompensation">
+                    <option value="1.1">Есть</option>
+                    <option value="1">Нет</option>
+                </select>
+                <br><br>
 
-            <label for="agreementSupport">Требуется ли сопровождение согласования?</label>
-            <select id="agreementSupport" name="agreementSupport">
-                <option value="1.05">Требуется</option>
-                <option value="1">Не требуется</option>
-            </select>
-            <br><br>
+                <label for="agreementSupport">Требуется ли сопровождение согласования?</label>
+                <select id="agreementSupport" name="agreementSupport">
+                    <option value="1.05">Требуется</option>
+                    <option value="1">Не требуется</option>
+                </select>
+                <br><br>
 
-            <label for="numDevices">Количество электроприемников:</label>
-            <input type="number" id="numDevices" name="numDevices" min="0" max="5000" value="10">
-            <br><br>
+                <label for="numDevices">Количество электроприемников:</label>
+                <input type="number" id="numDevices" name="numDevices" min="0" max="5000" value="10">
+                <br><br>
 
-            <label for="numLines">Количество участков ЛЭП от центра питания до каждого электроприемника:</label>
-            <input type="number" id="numLines" name="numLines" min="0" max="5000" value="15">
-            <br><br>
+                <label for="numLines">Количество участков ЛЭП от центра питания до каждого электроприемника:</label>
+                <input type="number" id="numLines" name="numLines" min="0" max="5000" value="15">
+                <br><br>
 
-            <button type="button" onclick="calculateCost()">РАСЧЁТ</button>
-        </form>
-        <p id="result"></p>
-    </div>
-</section>
-
-
+                <button type="button" onclick="calculateCost()">РАСЧЁТ</button>
+            </form>
+            <p id="result"></p>
+        </div>
+    </section>
 
     <!-- Вкладка "Контакты" -->
     <section id="contact" class="tab-content">
@@ -185,21 +183,16 @@
         }
 
         function calculateCost() {
-            const P = parseFloat(document.getElementById('power').value);
-            const Pdop = parseFloat(document.getElementById('Pdop').value);
-            const voltageClass = parseFloat(document.getElementById('voltageClass').value);
-            const reactiveCompensation = parseFloat(document.getElementById('reactiveCompensation').value);
-            const agreementSupport = parseFloat(document.getElementById('agreementSupport').value);
+            const power = parseFloat(document.getElementById("power").value);
+            const additionalPower = parseFloat(document.getElementById("Pdop").value);
+            const voltageClass = parseFloat(document.getElementById("voltageClass").value);
+            const reactiveCompensation = parseFloat(document.getElementById("reactiveCompensation").value);
+            const agreementSupport = parseFloat(document.getElementById("agreementSupport").value);
+            const numDevices = parseFloat(document.getElementById("numDevices").value);
+            const numLines = parseFloat(document.getElementById("numLines").value);
 
-            if (isNaN(P) || P <= 0) {
-                document.getElementById('result').innerText = "Ошибка: введите корректную мощность.";
-                return;
-            }
-
-            // Простой расчет
-            const cost = Math.round(((P + Pdop) * voltageClass * reactiveCompensation * agreementSupport) / 100) * 100;
-
-            document.getElementById('result').innerText = `Общая стоимость услуги: ${cost} руб.`;
+            const totalCost = (power + additionalPower) * voltageClass * reactiveCompensation * agreementSupport * numDevices * numLines;
+            document.getElementById("result").innerText = "Итоговая стоимость услуг: " + totalCost.toFixed(2) + " рублей.";
         }
     </script>
 </body>
