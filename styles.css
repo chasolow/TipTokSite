@@ -1,8 +1,17 @@
 /* Стили для логотипа */
 .logo-container {
-    text-align: center;
-    margin: 20px 0;
+    width: 100%; /* Ширина контейнера для логотипа */
+    text-align: center; /* Центрируем изображение */
+    overflow: hidden; /* Скрыть переполнение */
 }
+
+.logo-container img {
+    width: 100%; /* Ширина изображения по ширине контейнера */
+    height: auto; 
+    max-height: 200px; /* Максимальная высота изображения */
+    object-fit: cover; /* Измените на cover для заполнения блока */
+}
+
 
 .logo {
     max-width: 200px;
